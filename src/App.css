@@ -1,3 +1,108 @@
+body {
+  background: #0f0c29; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #000000,
+    #161629,
+    #000000
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #000000,
+    #161629,
+    #000000
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
 .App {
+  display: flex;
   text-align: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  background-color: #000000;
+  color: #94a3a8;
+  height: 8vh;
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  width: 85vw;
+  justify-content: space-between;
+}
+
+.right-nav {
+  display: flex;
+  flex-direction: row;
+  width: 35vw;
+  justify-content: space-between;
+}
+
+.left-nav {
+  font-family: Brush Script MT, cursive;
+  font-size: 2em;
+  margin-top: -0.7em;
+}
+
+.album-parent {
+  display: flex;
+  width: 70%;
+  /* border: 1px solid white; */
+  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 0;
+}
+.album {
+  display: flex;
+  margin: 10px;
+  border: 1px solid white;
+  width: 27vw;
+  min-width: 235px;
+  height: 18vw;
+  margin-top: 7vh;
+  color: #161629;
+  font-size: 3em;
+  justify-content: center;
+  background-image: url(https://photos.smugmug.com/July-2019/i-hhkDQjV/0/0d6b5423/X3/DSC_4142-X3.jpg);
+  background-size: 27vw;
+}
+
+.mobile {
+  display: none;
+  color: white;
+}
+
+@media (max-width: 872px) {
+  .right-nav {
+    display: none;
+  }
+  .album {
+    display: none;
+  }
+  .album-parent {
+    flex-direction: column;
+    align-items: center;
+  }
+  .mobile {
+    display: flex;
+    margin: 10px;
+    flex-direction: column;
+  }
+  .mobile-img {
+    display: flex;
+    width: 60vw;
+    height: auto;
+  }
+}
+
+@media (min-width: 872px) {
 }

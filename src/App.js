@@ -1,11 +1,13 @@
 import React from "react";
 import "./App.css";
-import Album from "./components/Album/Album";
+import Header from "./components/Header/Header";
+import routes from "./routes";
 
 function App() {
   return (
     <div className="App">
-      <Album />
+      <Header />
+      {routes}
     </div>
   );
 }
