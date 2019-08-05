@@ -21,7 +21,7 @@ class Album extends React.Component {
           />
         </div>
         <div className="mobile">
-          <div className="mobile-lable">Sunset</div>
+          <div className="mobile-label">Sunset</div>
           <img
             className="mobile-img"
             src="https://photos.smugmug.com/July-2019/i-CNdkWmJ/0/942dbfa1/X3/DSC_4168-X3.jpg"

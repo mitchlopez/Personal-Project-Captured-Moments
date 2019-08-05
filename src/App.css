@@ -19,6 +19,7 @@ body {
   text-align: center;
   flex-direction: column;
   align-items: center;
+  min-width: 240px;
 }
 
 header {
@@ -29,6 +30,7 @@ header {
   background-color: #000000;
   color: #94a3a8;
   height: 8vh;
+  min-width: 240px;
 }
 
 .nav-container {
@@ -43,6 +45,7 @@ header {
   flex-direction: row;
   width: 35vw;
   justify-content: space-between;
+  min-width: 240px;
 }
 
 .left-nav {
@@ -78,7 +81,7 @@ header {
 
 .mobile {
   display: none;
-  color: white;
+  color: #94a3a8;
 }
 
 @media (max-width: 872px) {
@@ -102,6 +105,10 @@ header {
     width: 60vw;
     height: auto;
   }
+}
+
+.mobile-label {
+  font-size: 2em;
 }
 
 @media (min-width: 872px) {
