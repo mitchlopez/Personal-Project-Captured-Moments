@@ -12,6 +12,8 @@ export default function Header() {
           <p className="nav-item">Sunset</p>
           <p className="nav-item">Moon</p>
           <p className="nav-item">Travel</p>
+          <p className="nav-item">Wildlife</p>
+          <p className="nav-item">Other</p>
         </div>
       </div>
     </header>

@@ -8,9 +8,9 @@ body {
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     to right,
-    #000000,
     #161629,
-    #000000
+    #000000,
+    #161629
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
@@ -22,6 +22,40 @@ body {
   min-width: 240px;
 }
 
+.album-row-1 {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.album-row-2 {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.sunset {
+  background-image: url(https://photos.smugmug.com/BEST/i-RtvX54w/0/8608335a/XL/IMG_4961-XL.jpg);
+}
+
+.landscape {
+  background-image: url(https://photos.smugmug.com/BEST/i-4zVFdRx/0/46ba1e3e/XL/IMG_1921-XL.jpg);
+}
+
+.wildlife {
+  background-image: url(https://photos.smugmug.com/BEST/i-bJ2r28s/0/11c8a308/X4/IMG_3420-X4.png);
+}
+.moon {
+  background-image: url(https://photos.smugmug.com/BEST/i-6D7jwww/0/dd501db8/X2/IMG_3142-X2.jpg);
+}
+.travel {
+  background-image: url(https://photos.smugmug.com/BEST/i-CPtzCgh/0/fcf73f31/XL/IMG_7379-XL.jpg);
+}
+.other {
+  background-image: url(https://photos.smugmug.com/BEST/i-Nbnc8dK/0/bd6ae82c/XL/IMG_6931-XL.jpg);
+}
 header {
   display: flex;
   flex-direction: row;
@@ -31,6 +65,7 @@ header {
   color: #94a3a8;
   height: 8vh;
   min-width: 240px;
+  width: 100%;
 }
 
 .nav-container {
@@ -43,7 +78,7 @@ header {
 .right-nav {
   display: flex;
   flex-direction: row;
-  width: 35vw;
+  width: 45vw;
   justify-content: space-between;
   min-width: 240px;
 }
@@ -56,27 +91,26 @@ header {
 
 .album-parent {
   display: flex;
-  width: 70%;
-  /* border: 1px solid white; */
-  justify-content: center;
+  width: 90%;
+  border: 1px solid blue;
+  align-content: center;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
   margin-top: 0;
 }
 .album {
   display: flex;
-  margin: 10px;
+  margin: 5px;
   border: 1px solid white;
-  width: 27vw;
+  width: 21vw;
   min-width: 235px;
-  height: 18vw;
+  height: 14vw;
   margin-top: 7vh;
   color: #161629;
   font-size: 3em;
   justify-content: center;
-  background-image: url(https://photos.smugmug.com/July-2019/i-hhkDQjV/0/0d6b5423/X3/DSC_4142-X3.jpg);
-  background-size: 27vw;
+  background-size: 21vw;
 }
 
 .mobile {
@@ -105,8 +139,10 @@ header {
     width: 60vw;
     height: auto;
   }
+  .nav-container {
+    justify-content: center;
+  }
 }
-
 .mobile-label {
   font-size: 2em;
 }
