@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class Album extends React.Component {
   constructor() {
@@ -11,14 +12,16 @@ class Album extends React.Component {
   render() {
     return (
       <div className="album-parent">
-        <div className="mobile">
-          <div className="mobile-label">Landscape</div>
-          <img
-            className="mobile-img"
-            src="https://photos.smugmug.com/BEST/i-4zVFdRx/0/46ba1e3e/XL/IMG_1921-XL.jpg"
-            alt="landscape"
-          />
-        </div>
+        <Link to="/album/landscape">
+          <div className="mobile">
+            <div className="mobile-label">Landscape</div>
+            <img
+              className="mobile-img"
+              src="https://photos.smugmug.com/BEST/i-P7Hrz94/0/5b911b18/XL/IMG_7952-XL.jpg"
+              alt="landscape"
+            />
+          </div>
+        </Link>
         <div className="mobile">
           <div className="mobile-label">Sunset</div>
           <img
