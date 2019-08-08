@@ -11,7 +11,7 @@ class Other extends React.Component {
 
   componentDidMount() {
     axios
-      .get("/album/landscape")
+      .get("/album/other")
       .then(res => {
         this.setState({ pictures: res.data });
       })

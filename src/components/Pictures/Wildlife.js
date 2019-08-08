@@ -11,7 +11,7 @@ class Wildlife extends React.Component {
 
   componentDidMount() {
     axios
-      .get("/album/landscape")
+      .get("/album/wildlife")
       .then(res => {
         this.setState({ pictures: res.data });
       })

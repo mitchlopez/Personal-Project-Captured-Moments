@@ -11,7 +11,7 @@ class Sunset extends React.Component {
 
   componentDidMount() {
     axios
-      .get("/album/landscape")
+      .get("/album/sunset")
       .then(res => {
         this.setState({ pictures: res.data });
       })

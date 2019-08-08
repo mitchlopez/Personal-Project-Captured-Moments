@@ -34,7 +34,13 @@ class Landscape extends React.Component {
       );
     }
     const pictures = this.state.pictures.map(picture => {
-      return <img className="map-image" src={picture.url} alt={picture.description}/>;
+      return (
+        <img
+          className="map-image"
+          src={picture.url}
+          alt={picture.description}
+        />
+      );
     });
 
     return <div className="images">{pictures}</div>;

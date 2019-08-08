@@ -11,7 +11,7 @@ class Travel extends React.Component {
 
   componentDidMount() {
     axios
-      .get("/album/landscape")
+      .get("/album/travel")
       .then(res => {
         this.setState({ pictures: res.data });
       })

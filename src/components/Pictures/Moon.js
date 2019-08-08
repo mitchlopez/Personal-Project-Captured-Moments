@@ -11,7 +11,7 @@ class Moon extends React.Component {
 
   componentDidMount() {
     axios
-      .get("/album/landscape")
+      .get("/album/moon")
       .then(res => {
         this.setState({ pictures: res.data });
       })
