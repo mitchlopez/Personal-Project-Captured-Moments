@@ -86,18 +86,16 @@ header {
 }
 
 .images {
-  /* border: green 1px solid; */
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  width: 95%;
-  flex-wrap: wrap;
+  width: 49vw;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .map-image {
-  width: 25vw;
-  margin: 10px;
+  width: 95%;
+  margin-bottom: 20px;
+  /* border: 4px solid #94a3a8; */
+  border-radius: 5%;
 }
 
 .album-parent {
@@ -109,6 +107,13 @@ header {
   justify-content: space-around;
   flex-wrap: wrap;
   margin-top: 2vh;
+}
+
+.images-container {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  margin-top: 40px;
 }
 
 .mobile {
@@ -224,9 +229,35 @@ div:hover {
   .menu {
     display: flex;
   }
+  .images {
+    width: 48.5vw;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    /* border: orange solid */
+  }
   .map-image {
-    width: 45vw;
-    margin: 5px;
+    width: 98%;
+    height: auto;
+    margin: 0;
+    margin-bottom: 10px;
+    /* border: black 3px solid; */
+  }
+  .one {
+    margin-right: 5px;
+  }
+  .images-container {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    margin-top: 40px;
+    /* border: orange 1px solid; */
+  }
+  .header-menu-wrapper {
+    margin-top: 25px;
+  }
+  .logo {
+    font-size: 1.3em;
   }
 }
 

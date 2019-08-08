@@ -5,7 +5,8 @@ class Wildlife extends React.Component {
   constructor() {
     super();
     this.state = {
-      pictures: []
+      pictures: [],
+      items: 0
     };
   }
 
@@ -14,6 +15,8 @@ class Wildlife extends React.Component {
       .get("/album/wildlife")
       .then(res => {
         this.setState({ pictures: res.data });
+        this.setState({ items: Math.ceil(this.state.pictures.length / 2) });
+        //Change the '+ 1' to however many pictures needed to balance out the two columns
       })
       .catch(error => {
         console.log(error);
@@ -33,17 +36,36 @@ class Wildlife extends React.Component {
         </div>
       );
     }
-    const pictures = this.state.pictures.map(picture => {
-      return (
-        <img
-          className="map-image"
-          src={picture.url}
-          alt={picture.description}
-        />
-      );
-    });
+    const columOnePictures = this.state.pictures
+      .slice(0, this.state.items)
+      .map(picture => {
+        return (
+          <img
+            className="map-image"
+            src={picture.url}
+            alt={picture.description}
+          />
+        );
+      });
 
-    return <div className="images">{pictures}</div>;
+    const columTwoPictures = this.state.pictures
+      .slice(this.state.items, this.state.pictures.length)
+      .map(picture => {
+        return (
+          <img
+            className="map-image"
+            src={picture.url}
+            alt={picture.description}
+          />
+        );
+      });
+
+    return (
+      <div className="images-container">
+        <div className="images one">{columOnePictures}</div>
+        <div className="images two">{columTwoPictures}</div>
+      </div>
+    );
   }
 }
 

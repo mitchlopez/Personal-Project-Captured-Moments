@@ -5,7 +5,8 @@ class Other extends React.Component {
   constructor() {
     super();
     this.state = {
-      pictures: []
+      pictures: [],
+      items: 0
     };
   }
 
@@ -14,6 +15,7 @@ class Other extends React.Component {
       .get("/album/other")
       .then(res => {
         this.setState({ pictures: res.data });
+        this.setState({ items: Math.ceil(this.state.pictures.length / 2) - 2 });
       })
       .catch(error => {
         console.log(error);
@@ -33,17 +35,36 @@ class Other extends React.Component {
         </div>
       );
     }
-    const pictures = this.state.pictures.map(picture => {
-      return (
-        <img
-          className="map-image"
-          src={picture.url}
-          alt={picture.description}
-        />
-      );
-    });
+    const columOnePictures = this.state.pictures
+      .slice(0, this.state.items)
+      .map(picture => {
+        return (
+          <img
+            className="map-image"
+            src={picture.url}
+            alt={picture.description}
+          />
+        );
+      });
 
-    return <div className="images">{pictures}</div>;
+    const columTwoPictures = this.state.pictures
+      .slice(this.state.items, this.state.pictures.length)
+      .map(picture => {
+        return (
+          <img
+            className="map-image"
+            src={picture.url}
+            alt={picture.description}
+          />
+        );
+      });
+
+    return (
+      <div className="images-container">
+        <div className="images one">{columOnePictures}</div>
+        <div className="images two">{columTwoPictures}</div>
+      </div>
+    );
   }
 }
 
