@@ -13,9 +13,13 @@ massive(process.env.CONNECTION_STRING).then(dbInstance => {
 });
 
 app.get("/album/landscape", albumController.getLandscapeAlbum);
-// app.get("/album/landscape", () => {
-//   console.log("hit");
-// });
+app.get("/album/moon", albumController.getMoonAlbum);
+app.get("/album/sunset", albumController.getSunsetAlbum);
+app.get("/album/travel", albumController.getTravelAlbum);
+app.get("/album/wildlife", albumController.getWildlifeAlbum);
+app.get("/album/other", albumController.getOtherAlbum);
+
+
 
 app.listen(process.env.SERVER_PORT, () =>
   console.log(`Now listening on Port:${process.env.SERVER_PORT}`)
