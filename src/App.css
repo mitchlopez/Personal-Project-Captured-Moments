@@ -14,6 +14,13 @@ body {
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
+}
+
 .page-not-found {
   color: #94a3a8;
 }
@@ -23,10 +30,6 @@ body {
   flex-direction: column;
   align-items: center;
   min-width: 315px;
-}
-
-header {
-  color: #94a3a8;
 }
 
 .menu-header-wrapper {
@@ -53,6 +56,10 @@ header {
   width: 85vw;
   justify-content: space-between;
   align-items: center;
+}
+
+.nav-item {
+  color: #94a3a8;
 }
 
 .right-nav {
@@ -164,18 +171,16 @@ header {
 }
 
 .menu-item {
+  display: flex;
+  justify-content: center;
   margin: 16px;
-  /* border: white 1px solid; */
-  width: 21vw;
+  width: auto;
   height: 26px;
-  border-radius: 2vw;
+  color: #94a3a8;
 }
 
-div:hover,
-div:visited,
-div:link,
-div:active {
-  text-decoration: none;
+.menu-item-closed {
+  display: none;
 }
 
 div:link {
@@ -193,6 +198,7 @@ div:hover {
   text-decoration: none;
   min-width: 200px;
 }
+
 @media (max-width: 730px) {
   .right-nav {
     display: none;
@@ -229,6 +235,7 @@ div:hover {
   .menu {
     display: flex;
   }
+
   .images {
     width: 48.5vw;
     flex-direction: column;
@@ -265,6 +272,9 @@ div:hover {
   .open {
     animation: closeMenu linear forwards 0.3s;
   }
+  .menu-item {
+    display: none;
+  }
 }
 
 @media (min-width: 1140px) {
@@ -273,25 +283,35 @@ div:hover {
   }
 }
 
-@keyframes closeMenu {
+@keyframes textAppear {
   from {
-    height: 500px;
-    color: white;
+    display: none;
   }
   to {
+    display: flex;
+  }
+}
+
+@keyframes closeMenu {
+  from {
+    display: flex;
+    height: 500px;
+  }
+  to {
+    display: none;
     height: 40px;
-    color: rgba(255, 255, 255, 0);
   }
 }
 
 @keyframes openMenu {
   from {
-    height: 0px;
+    display: none;
+    height: 40px;
     color: rgba(255, 255, 255, 0);
   }
   to {
+    display: flex;
     height: 500px;
     font-size: 1.5em;
-    color: white;
   }
 }

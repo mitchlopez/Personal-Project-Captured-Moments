@@ -15,7 +15,7 @@ class Wildlife extends React.Component {
       .get("/album/wildlife")
       .then(res => {
         this.setState({ pictures: res.data });
-        this.setState({ items: Math.ceil(this.state.pictures.length / 2) });
+        this.setState({ items: Math.ceil(this.state.pictures.length / 2) + 1 });
         //Change the '+ 1' to however many pictures needed to balance out the two columns
       })
       .catch(error => {

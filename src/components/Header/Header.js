@@ -6,7 +6,8 @@ class Header extends React.Component {
   constructor() {
     super();
     this.state = {
-      current: "close"
+      current: "close",
+      menu: "close"
     };
   }
 
@@ -18,6 +19,20 @@ class Header extends React.Component {
         current: "closed"
       });
     }
+    if (this.state.menu !== "menu-item") {
+      this.setState({ menu: "menu-item" });
+    } else {
+      this.setState({
+        menu: "close"
+      });
+    }
+  };
+
+  handleLogoClick = () => {
+    if (this.state.current === "open") {
+      this.setState({ current: "closed" });
+      this.setState({ menu: "close" });
+    }
   };
 
   render() {
@@ -27,7 +42,9 @@ class Header extends React.Component {
           <div className="nav-container">
             <div className="left-nav">
               <Link to="/">
-                <div className="logo">Captured Moments</div>
+                <div onClick={this.handleLogoClick} className="logo">
+                  Captured Moments
+                </div>
               </Link>
               <img
                 className="menu"
@@ -37,16 +54,28 @@ class Header extends React.Component {
               />
             </div>
             <div className="right-nav">
-              <p className="nav-item">Landscape</p>
-              <p className="nav-item">Sunset</p>
-              <p className="nav-item">Moon</p>
-              <p className="nav-item">Travel</p>
-              <p className="nav-item">Wildlife</p>
-              <p className="nav-item">Other</p>
+              <Link to="/album/landscape">
+                <p className="nav-item">Landscape</p>
+              </Link>
+              <Link to="/album/sunset">
+                <p className="nav-item">Sunset</p>
+              </Link>
+              <Link to="/album/moon">
+                <p className="nav-item">Moon</p>
+              </Link>
+              <Link to="/album/travel">
+                <p className="nav-item">Travel</p>
+              </Link>
+              <Link to="/album/wildlife">
+                <p className="nav-item">Wildlife</p>
+              </Link>
+              <Link to="/album/Other">
+                <p className="nav-item">Other</p>
+              </Link>
             </div>
           </div>
         </header>
-        <Menu state={this.state.current} click={this.handleMenuClick} />
+        <Menu state={this.state} click={this.handleMenuClick} />
       </div>
     );
   }
