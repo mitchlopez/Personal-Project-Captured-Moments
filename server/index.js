@@ -20,6 +20,7 @@ app.get("/album/travel", albumController.getTravelAlbum);
 app.get("/album/wildlife", albumController.getWildlifeAlbum);
 app.get("/album/other", albumController.getOtherAlbum);
 
+app.get("/photo/comments/:id", pictureController.getCommentsByPhotoId);
 app.get("/photo/:id", pictureController.getPhotoInfoByPhotoId);
 
 app.listen(process.env.SERVER_PORT, () =>

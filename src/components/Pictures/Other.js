@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class Other extends React.Component {
   constructor() {
@@ -39,11 +40,13 @@ class Other extends React.Component {
       .slice(0, this.state.items)
       .map(picture => {
         return (
-          <img
-            className="map-image"
-            src={picture.url}
-            alt={picture.description}
-          />
+          <Link to={`/photo/${picture.photo_id}`}>
+            <img
+              className="map-image"
+              src={picture.url}
+              alt={picture.description}
+            />
+          </Link>
         );
       });
 
@@ -51,11 +54,13 @@ class Other extends React.Component {
       .slice(this.state.items, this.state.pictures.length)
       .map(picture => {
         return (
-          <img
-            className="map-image"
-            src={picture.url}
-            alt={picture.description}
-          />
+          <Link to={`/photo/${picture.photo_id}`}>
+            <img
+              className="map-image"
+              src={picture.url}
+              alt={picture.description}
+            />
+          </Link>
         );
       });
 
