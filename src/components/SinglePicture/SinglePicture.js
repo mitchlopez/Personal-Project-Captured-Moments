@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { CLIENT_RENEG_LIMIT } from "tls";
-// import AddCommentPopup from "./AddCommentPopup/AddCommentPopup";
+import Filter from "bad-words";
 
+const filter = new Filter();
 class SinglePicture extends React.Component {
   constructor() {
     super();
@@ -41,7 +41,7 @@ class SinglePicture extends React.Component {
     if (this.state.showPopup === "popup") {
       this.setState({
         showPopup: "no-popup",
-        newComment: ""
+        newComment: "this is"
       });
     } else {
       this.setState({
@@ -54,7 +54,11 @@ class SinglePicture extends React.Component {
     const body = {
       comment: this.state.newComment
     };
-    if (this.state.newComment.length > 2) {
+    if (this.state.newComment.length < 6) {
+      alert("Please insert a minimum 3 characters!");
+    } else if (this.state.newComment.length > 500) {
+      alert("500 character maximum");
+    } else {
       axios
         .post(`/photo/comment/${this.props.match.params.id}`, body)
         .then(() => {
@@ -62,8 +66,6 @@ class SinglePicture extends React.Component {
           this.refreshComments();
         });
       this.togglePopup();
-    } else {
-      alert("Please insert a minimum 3 characters!");
     }
   };
 
@@ -94,7 +96,9 @@ class SinglePicture extends React.Component {
           {this.state.comments.map(comment => {
             return (
               <div className="single-comment">
-                <p className="single-image-text">{comment.comment}</p>
+                <p className="single-image-text">
+                  {filter.clean(comment.comment)}
+                </p>
                 <button
                   onClick={() => {
                     axios

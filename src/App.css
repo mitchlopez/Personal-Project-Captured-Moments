@@ -246,12 +246,17 @@ div:hover {
   width: auto;
   height: 95vh;
   max-width: 98vw;
-  margin-top: 20px;
 }
 
 .single-image-text {
   color: white;
+  font-size: 0.9em;
   margin: 5px;
+  max-width: 75vw;
+  justify-items: flex-start;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
 }
 
 .single-picture-container {
@@ -436,6 +441,7 @@ div:hover {
   width: 80vw;
   height: 35px;
   border-radius: 25px;
+  padding-left: 15px;
 }
 
 .single-comment {
