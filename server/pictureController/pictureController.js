@@ -28,7 +28,41 @@ function getCommentsByPhotoId(req, res) {
     });
 }
 
+function postCommentByPhotoId(req, res) {
+  const dbInstance = req.app.get("db");
+  const { id } = req.params;
+  const { comment } = req.body;
+
+  dbInstance
+    .postCommentByPhotoId([comment, id])
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(e => {
+      res.status(500).json("oops, something went wrong");
+      console.log(e);
+    });
+}
+
+function deleteCommentByCommentId(req, res) {
+  const dbInstance = req.app.get("db");
+  const { id } = req.params;
+  // console.log(req.body);
+
+  dbInstance
+    .deleteCommentByCommentId(id)
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(e => {
+      res.status(500).json("oops, something went wrong");
+      console.log(e);
+    });
+}
+
 module.exports = {
   getPhotoInfoByPhotoId,
-  getCommentsByPhotoId
+  getCommentsByPhotoId,
+  postCommentByPhotoId,
+  deleteCommentByCommentId
 };

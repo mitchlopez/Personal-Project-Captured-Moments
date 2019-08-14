@@ -22,6 +22,9 @@ app.get("/album/other", albumController.getOtherAlbum);
 
 app.get("/photo/comments/:id", pictureController.getCommentsByPhotoId);
 app.get("/photo/:id", pictureController.getPhotoInfoByPhotoId);
+app.post("/photo/comment/:id", pictureController.postCommentByPhotoId);
+app.delete("/photo/comment/:id", pictureController.deleteCommentByCommentId);
+// app.delete("/photo/comment/", () => console.log("hit"));
 
 app.listen(process.env.SERVER_PORT, () =>
   console.log(`Now listening on Port:${process.env.SERVER_PORT}`)

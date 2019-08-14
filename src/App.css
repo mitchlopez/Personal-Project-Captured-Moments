@@ -1,3 +1,46 @@
+/* Removes default formatting for buttons */
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  /* show a hand cursor on hover; some argue that we
+  should keep the default arrow cursor for buttons */
+  cursor: pointer;
+}
+
+input {
+  border: none;
+  outline: none;
+  background-color: rgb(70, 70, 75);
+  color: white;
+}
+
+button {
+  margin: 2px 0;
+
+  /* invisible border (will be colored on hover/focus) */
+  border: solid 1px transparent;
+  border-radius: 15px;
+
+  /* size comes from text & padding (no width/height) */
+  padding: 0.5em 1em;
+
+  color: #ffffff;
+  background-color: #2c2c3d;
+}
+
+button:hover {
+  background-color: #505070;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(252, 252, 252, 0.5),
+    0 0 0 1.5px rgba(255, 255, 255, 0.5);
+}
+
 body {
   background: #0f0c29; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -201,7 +244,8 @@ div:hover {
 
 .single-image {
   width: auto;
-  height: 100vh;
+  height: 95vh;
+  max-width: 98vw;
   margin-top: 20px;
 }
 
@@ -294,9 +338,12 @@ div:hover {
   .logo {
     font-size: 1.3em;
   }
+}
+
+@media (max-width: 1085px) {
   .single-image {
     /* max-height: 75vh; */
-    width: 100vw;
+    width: 98vw;
     height: auto;
     margin-top: 20px;
   }
@@ -359,7 +406,7 @@ div:hover {
   right: 0;
   bottom: 0;
   margin: auto;
-  background-color: rgba(0, 0, 0, 0.92);
+  background-color: rgba(0, 0, 0, 0.835);
 }
 .popup\_inner {
   position: absolute;
@@ -374,4 +421,34 @@ div:hover {
 
 .no-popup {
   display: none;
+}
+
+.comment-header {
+  color: #ccd6da;
+}
+
+.comment-button {
+  width: 80px;
+  margin: 30px;
+}
+
+.comment-input {
+  width: 80vw;
+  height: 35px;
+  border-radius: 25px;
+}
+
+.single-comment {
+  display: flex;
+  flex-direction: row;
+}
+
+.admin-delete-button {
+  margin-left: 15px;
+  background-color: rgb(95, 15, 15);
+  color: rgb(151, 151, 151);
+}
+
+.admin-delete-button:hover {
+  background-color: #ff0000cc;
 }
