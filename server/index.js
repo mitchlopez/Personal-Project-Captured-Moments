@@ -24,7 +24,7 @@ app.get("/photo/comments/:id", pictureController.getCommentsByPhotoId);
 app.get("/photo/:id", pictureController.getPhotoInfoByPhotoId);
 app.post("/photo/comment/:id", pictureController.postCommentByPhotoId);
 app.delete("/photo/comment/:id", pictureController.deleteCommentByCommentId);
-// app.delete("/photo/comment/", () => console.log("hit"));
+app.put("/photo/description/:id", pictureController.updateDescriptionByPhotoId);
 
 app.listen(process.env.SERVER_PORT, () =>
   console.log(`Now listening on Port:${process.env.SERVER_PORT}`)

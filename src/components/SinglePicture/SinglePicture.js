@@ -12,7 +12,8 @@ class SinglePicture extends React.Component {
       url: "",
       description: "",
       showPopup: "no-popup",
-      newComment: ""
+      newComment: "",
+      showDescription: "hide-description"
     };
   }
   componentDidMount() {
@@ -68,6 +69,25 @@ class SinglePicture extends React.Component {
       this.togglePopup();
     }
   };
+  toggleDecriptionEdit = () => {
+    if (this.state.showDescription !== "show-description") {
+      this.setState({ showDescription: "show-description" });
+    } else {
+      this.setState({ showDescription: "hide-description" });
+    }
+  };
+  handleNewDescription = () => {
+    const body = {
+      description: this.state.description
+    };
+
+    axios
+      .put(`/photo/description/${this.props.match.params.id}`, body)
+      .then(this.toggleDecriptionEdit())
+      .catch(e => {
+        console.log(e);
+      });
+  };
 
   handleInput = event => {
     // console.log(event);
@@ -87,9 +107,32 @@ class SinglePicture extends React.Component {
         <img className="single-image" src={this.state.url} alt="selected-img" />
         <div className="image-text">
           <div className="description">
-            <h3 className="single-image-text">Description:</h3>
-            <div className="description-text single-image-text">
-              {this.state.description}
+            <div className="description-first-row">
+              <h3 className="single-image-text">Description:</h3>
+              <div className="description-text single-image-text">
+                {this.state.description}
+              </div>
+              <button
+                className="edit-description-button"
+                onClick={this.toggleDecriptionEdit}
+              >
+                Edit Description
+              </button>
+            </div>
+            <div className={this.state.showDescription}>
+              <input
+                className="edit-description-input"
+                value={this.state.description}
+                onChange={e => {
+                  this.setState({ description: e.target.value });
+                }}
+              />
+              <button
+                className="submit-new-description"
+                onClick={this.handleNewDescription}
+              >
+                Submit
+              </button>
             </div>
           </div>
           <h4 className="single-image-text">Comments: </h4>

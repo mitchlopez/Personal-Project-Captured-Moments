@@ -244,8 +244,9 @@ div:hover {
 
 .single-image {
   width: auto;
-  height: 95vh;
+  height: auto;
   max-width: 98vw;
+  max-height: 150vh;
 }
 
 .single-image-text {
@@ -342,15 +343,6 @@ div:hover {
   }
   .logo {
     font-size: 1.3em;
-  }
-}
-
-@media (max-width: 1085px) {
-  .single-image {
-    /* max-height: 75vh; */
-    width: 98vw;
-    height: auto;
-    margin-top: 20px;
   }
 }
 
@@ -457,4 +449,46 @@ div:hover {
 
 .admin-delete-button:hover {
   background-color: #ff0000cc;
+}
+
+.hide-description {
+  display: none;
+}
+
+.show-description {
+  display: flex;
+  flex-direction: row;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+}
+
+.description-first-row {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.edit-description-input {
+  width: 75vw;
+  padding-left: 15px;
+  border-radius: 20px;
+  margin-right: 10px;
+  margin-left: 3.5vw;
+}
+
+.edit-description-button {
+  margin-left: 5px;
+  font-size: 0.7em;
+  max-width: 20.6vw;
+}
+
+h4.single-image-text {
+  margin-left: 3vw;
+}
+
+h3.single-image-text {
+  margin-left: 3vw;
 }

@@ -60,9 +60,26 @@ function deleteCommentByCommentId(req, res) {
     });
 }
 
+function updateDescriptionByPhotoId(req, res) {
+  const dbInstance = req.app.get("db");
+  const { id } = req.params;
+  const { description } = req.body;
+
+  dbInstance
+    .updateDescriptionByPhotoId([description, id])
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(e => {
+      res.status(500).json("oops, something went wrong");
+      console.log(e);
+    });
+}
+
 module.exports = {
   getPhotoInfoByPhotoId,
   getCommentsByPhotoId,
   postCommentByPhotoId,
-  deleteCommentByCommentId
+  deleteCommentByCommentId,
+  updateDescriptionByPhotoId
 };
