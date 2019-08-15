@@ -8,7 +8,7 @@ class Landscape extends React.Component {
     this.state = {
       pictures: [],
       items: 0,
-      photo_id: 0
+      photo_id: 2
     };
   }
 

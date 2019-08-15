@@ -8,6 +8,8 @@ import Wildlife from "./components/Pictures/Wildlife";
 import Sunset from "./components/Pictures/Sunset";
 import Travel from "./components/Pictures/Travel";
 import SinglePicture from "./components/SinglePicture/SinglePicture";
+import AdminLogin from "./components/Admin/AdminLogin";
+import AdminConsole from "./components/Admin/AdminConsole";
 
 export default (
   <Switch>
@@ -19,6 +21,8 @@ export default (
     <Route exact path="/album/travel" component={Travel} />
     <Route exact path="/album/sunset" component={Sunset} />
     <Route path="/photo/:id" component={SinglePicture} />
+    <Route path="/auth" component={AdminLogin} />
+    <Route path="/admin" component={AdminConsole} />
 
     {/* keep at bottom incase of inpropper path  */}
     <Route

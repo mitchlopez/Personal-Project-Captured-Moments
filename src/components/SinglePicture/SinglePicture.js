@@ -97,9 +97,17 @@ class SinglePicture extends React.Component {
   };
 
   render() {
-    // console.log(this.state.comments);
-    if (this.state.url === undefined) {
-      return <div>Loading...</div>;
+    if (this.state.url === "") {
+      return (
+        <div>
+          <img
+            src="https://miro.medium.com/max/1400/1*e_Loq49BI4WmN7o9ItTADg.gif"
+            alt="loading"
+            className="loading-animation"
+          />
+          <h1 className="loading">Getting Picture</h1>
+        </div>
+      );
     }
 
     return (
@@ -116,7 +124,7 @@ class SinglePicture extends React.Component {
                 className="edit-description-button"
                 onClick={this.toggleDecriptionEdit}
               >
-                Edit Description
+                Edit
               </button>
             </div>
             <div className={this.state.showDescription}>
@@ -154,7 +162,7 @@ class SinglePicture extends React.Component {
                   }}
                   className="admin-delete-button"
                 >
-                  Delete Comment
+                  Delete
                 </button>
               </div>
             );
