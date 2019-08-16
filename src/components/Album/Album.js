@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 class Album extends React.Component {
   constructor() {
@@ -7,6 +8,23 @@ class Album extends React.Component {
     this.state = {
       currentAlbum: "none"
     };
+  }
+
+  componentDidMount() {
+    axios
+      .get("/featured")
+      .then(res => {
+        // console.log(res.data);
+        this.setState({ first: res.data[0].url });
+        this.setState({ second: res.data[1].url });
+        this.setState({ third: res.data[2].url });
+        this.setState({ first_id: res.data[0].site_id });
+        this.setState({ second_id: res.data[1].site_id });
+        this.setState({ third_id: res.data[2].site_id });
+      })
+      .catch(e => {
+        console.log(e);
+      });
   }
 
   render() {
@@ -72,6 +90,32 @@ class Album extends React.Component {
             />
           </div>
         </Link>
+        <div className="featured-container">
+          <h1 className="featured">Featured:</h1>
+          <section className="featured-preview-container">
+            <Link to={`/photo/${this.state.first_id}`}>
+              <img
+                className="mobile-img"
+                src={this.state.first}
+                alt="first preview"
+              />
+            </Link>
+            <Link to={`/photo/${this.state.second_id}`}>
+              <img
+                className="mobile-img"
+                src={this.state.second}
+                alt="second preview"
+              />
+            </Link>
+            <Link to={`/photo/${this.state.third_id}`}>
+              <img
+                className="mobile-img"
+                src={this.state.third}
+                alt="third preview"
+              />
+            </Link>
+          </section>
+        </div>
       </div>
     );
   }

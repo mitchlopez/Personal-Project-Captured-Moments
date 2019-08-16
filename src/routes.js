@@ -14,6 +14,17 @@ import AdminConsole from "./components/Admin/AdminConsole";
 export default (
   <Switch>
     <Route exact path="/" component={Album} />
+    <Route
+      exact
+      path="/photo/0"
+      render={() => (
+        <h1 className="page-not-found">
+          Error: Link does not exist. Please right click (or touch and hold on
+          mobile) and select "Open image in a new tab" to view this image in
+          full size
+        </h1>
+      )}
+    />
     <Route exact path="/album/landscape" component={Landscape} />
     <Route exact path="/album/moon" component={Moon} />
     <Route exact path="/album/other" component={Other} />

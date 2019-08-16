@@ -8,7 +8,7 @@ class AdminConsole extends React.Component {
   constructor() {
     super();
     this.state = {
-      content: "add"
+      content: "album"
     };
   }
 
@@ -26,7 +26,7 @@ class AdminConsole extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="admin-container">
         <nav className="admin-nav">
           <ul
             className="admin-tab"

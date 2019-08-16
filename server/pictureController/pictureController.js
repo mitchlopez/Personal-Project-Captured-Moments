@@ -76,10 +76,73 @@ function updateDescriptionByPhotoId(req, res) {
     });
 }
 
+function getFeatured(req, res) {
+  const dbInstance = req.app.get("db");
+
+  dbInstance
+    .getFeatured()
+    .then(info => {
+      res.status(200).json(info);
+    })
+    .catch(e => {
+      res.status(500).json("oops, something went wrong");
+      console.log(e);
+    });
+}
+
+function updateFeatured(req, res) {
+  const dbInstance = req.app.get("db");
+  const { first, second, third, first_id, second_id, third_id } = req.body;
+
+  dbInstance
+    .updateFeatured([first, second, third, first_id, second_id, third_id])
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(e => {
+      res.status(500).json("oops, something went wrong");
+      console.log(e);
+    });
+}
+
+function addPicture(req, res) {
+  const dbInstance = req.app.get("db");
+  const { url, album_id, description } = req.body;
+
+  dbInstance
+    .addPicture([url, album_id, description])
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(e => {
+      res.status(500).json("oops, something went wrong");
+      console.log(e);
+    });
+}
+
+function deletePicture(req, res) {
+  const dbInstance = req.app.get("db");
+  const { id } = req.params;
+
+  dbInstance
+    .deletePhotoByPhotoId(id)
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(e => {
+      res.status(500).json("oops, something went wrong");
+      console.log(e);
+    });
+}
+
 module.exports = {
   getPhotoInfoByPhotoId,
   getCommentsByPhotoId,
   postCommentByPhotoId,
   deleteCommentByCommentId,
-  updateDescriptionByPhotoId
+  updateDescriptionByPhotoId,
+  getFeatured,
+  updateFeatured,
+  addPicture,
+  deletePicture
 };

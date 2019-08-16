@@ -76,6 +76,7 @@ class SinglePicture extends React.Component {
       this.setState({ showDescription: "hide-description" });
     }
   };
+
   handleNewDescription = () => {
     const body = {
       description: this.state.description
