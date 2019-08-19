@@ -4,6 +4,7 @@ const albumController = require("./albumController/albumController");
 const pictureController = require("./pictureController/pictureController");
 const session = require("express-session");
 require("dotenv").config();
+const path = require("path");
 
 const app = express();
 
@@ -57,6 +58,10 @@ app.delete("/photo/comment/:id", pictureController.deleteCommentByCommentId);
 app.put("/photo/description/:id", pictureController.updateDescriptionByPhotoId);
 app.post("/photo", pictureController.addPicture);
 app.delete("/photo/:id", pictureController.deletePicture);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
+});
 
 app.listen(process.env.SERVER_PORT, () =>
   console.log(`Now listening on Port:${process.env.SERVER_PORT}`)
