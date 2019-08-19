@@ -3,8 +3,8 @@ const massive = require("massive");
 const albumController = require("./albumController/albumController");
 const pictureController = require("./pictureController/pictureController");
 const session = require("express-session");
-require("dotenv").config();
 const path = require("path");
+require("dotenv").config();
 
 const app = express();
 
