@@ -13,11 +13,13 @@ class Wildlife extends React.Component {
 
   componentDidMount() {
     axios
-      .get("/album/wildlife")
-      .then(res => {
-        this.setState({ pictures: res.data });
-        this.setState({ items: Math.ceil(this.state.pictures.length / 2) + 1 });
-        //Change the '+ 1' to however many pictures needed to balance out the two columns
+      .all([axios.get("/album/wildlife"), axios.get("/albums")])
+      .then(([res1, res2]) => {
+        this.setState({ pictures: res1.data });
+        this.setState({ offset: res2.data[4].offsets });
+        this.setState({
+          items: Math.ceil(this.state.pictures.length / 2) + this.state.offset
+        });
       })
       .catch(error => {
         console.log(error);

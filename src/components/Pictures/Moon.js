@@ -7,16 +7,20 @@ class Moon extends React.Component {
     super();
     this.state = {
       pictures: [],
-      items: 0
+      items: 0,
+      offset: 0
     };
   }
 
   componentDidMount() {
     axios
-      .get("/album/moon")
-      .then(res => {
-        this.setState({ pictures: res.data });
-        this.setState({ items: Math.ceil(this.state.pictures.length / 2) - 1 });
+      .all([axios.get("/album/moon"), axios.get("/albums")])
+      .then(([res1, res2]) => {
+        this.setState({ pictures: res1.data });
+        this.setState({ offset: res2.data[2].offsets });
+        this.setState({
+          items: Math.ceil(this.state.pictures.length / 2) + this.state.offset
+        });
       })
       .catch(error => {
         console.log(error);
@@ -24,6 +28,7 @@ class Moon extends React.Component {
   }
 
   render() {
+    console.log(this.state.offset);
     if (this.state.pictures[0] === undefined) {
       return (
         <div>

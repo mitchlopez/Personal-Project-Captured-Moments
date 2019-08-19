@@ -6,21 +6,51 @@ class Album extends React.Component {
   constructor() {
     super();
     this.state = {
-      currentAlbum: "none"
+      currentAlbum: "none",
+      first: "",
+      second: "",
+      third: "",
+      first_id: "",
+      second_id: "",
+      third_id: "",
+      landscape: "",
+      sunset: "",
+      moon: "",
+      travel: "",
+      wildlife: "",
+      other: "",
+      landscapeOffset: 0,
+      sunsetOffset: 0,
+      moonOffset: 0,
+      travelOffset: 0,
+      wildlifeOffset: 0,
+      otherOffset: 0
     };
   }
 
   componentDidMount() {
     axios
-      .get("/featured")
-      .then(res => {
-        // console.log(res.data);
-        this.setState({ first: res.data[0].url });
-        this.setState({ second: res.data[1].url });
-        this.setState({ third: res.data[2].url });
-        this.setState({ first_id: res.data[0].site_id });
-        this.setState({ second_id: res.data[1].site_id });
-        this.setState({ third_id: res.data[2].site_id });
+      .all([axios.get("/featured"), axios.get("/albums")])
+      .then(([res1, res2]) => {
+        // console.log(res1.data);
+        this.setState({ first: res1.data[0].url });
+        this.setState({ second: res1.data[1].url });
+        this.setState({ third: res1.data[2].url });
+        this.setState({ first_id: res1.data[0].site_id });
+        this.setState({ second_id: res1.data[1].site_id });
+        this.setState({ third_id: res1.data[2].site_id });
+        this.setState({ landscape: res2.data[0].url });
+        this.setState({ sunset: res2.data[1].url });
+        this.setState({ moon: res2.data[2].url });
+        this.setState({ travel: res2.data[3].url });
+        this.setState({ wildlife: res2.data[4].url });
+        this.setState({ other: res2.data[5].url });
+        this.setState({ landscapeOffset: res2.data[0].offsets });
+        this.setState({ sunsetOffset: res2.data[1].offsets });
+        this.setState({ moonOffset: res2.data[2].offsets });
+        this.setState({ travelOffset: res2.data[3].offsets });
+        this.setState({ wildlifeOffset: res2.data[4].offsets });
+        this.setState({ otherOffset: res2.data[5].offsets });
       })
       .catch(e => {
         console.log(e);
@@ -28,6 +58,19 @@ class Album extends React.Component {
   }
 
   render() {
+    if (this.state.other === "") {
+      return (
+        <div>
+          <img
+            src="https://miro.medium.com/max/1400/1*e_Loq49BI4WmN7o9ItTADg.gif"
+            alt="loading"
+            className="loading-animation"
+          />
+          <h1 className="loading">Getting Pictures</h1>
+        </div>
+      );
+    }
+
     return (
       <div className="album-parent">
         <Link to="/album/landscape">
@@ -35,7 +78,7 @@ class Album extends React.Component {
             <div className="mobile-label">Landscape</div>
             <img
               className="mobile-img"
-              src="https://photos.smugmug.com/BEST/i-P7Hrz94/0/5b911b18/XL/IMG_7952-XL.jpg"
+              src={this.state.landscape}
               alt="landscape"
             />
           </div>
@@ -43,31 +86,19 @@ class Album extends React.Component {
         <Link to="/album/sunset">
           <div className="mobile">
             <div className="mobile-label">Sunset</div>
-            <img
-              className="mobile-img"
-              src="https://photos.smugmug.com/BEST/i-RtvX54w/0/8608335a/XL/IMG_4961-XL.jpg"
-              alt="sunset"
-            />
+            <img className="mobile-img" src={this.state.sunset} alt="sunset" />
           </div>
         </Link>
         <Link to="/album/moon">
           <div className="mobile">
             <div className="mobile-label">Moon</div>
-            <img
-              className="mobile-img"
-              src="https://photos.smugmug.com/BEST/i-VgnPjVk/0/c420512a/XL/IMG_2844-XL.jpg"
-              alt="moon"
-            />
+            <img className="mobile-img" src={this.state.moon} alt="moon" />
           </div>
         </Link>
         <Link to="/album/travel">
           <div className="mobile">
             <div className="mobile-label">Travel</div>
-            <img
-              className="mobile-img"
-              src="https://photos.smugmug.com/BEST/i-CPtzCgh/0/fcf73f31/XL/IMG_7379-XL.jpg"
-              alt="travel"
-            />
+            <img className="mobile-img" src={this.state.travel} alt="travel" />
           </div>
         </Link>
         <Link to="/album/wildlife">
@@ -75,7 +106,7 @@ class Album extends React.Component {
             <div className="mobile-label">Wildlife</div>
             <img
               className="mobile-img"
-              src="https://photos.smugmug.com/BEST/i-bJ2r28s/0/11c8a308/X4/IMG_3420-X4.png"
+              src={this.state.wildlife}
               alt="Wildlife"
             />
           </div>
@@ -83,11 +114,7 @@ class Album extends React.Component {
         <Link to="/album/other">
           <div className="mobile">
             <div className="mobile-label">Other</div>
-            <img
-              className="mobile-img"
-              src="https://photos.smugmug.com/BEST/i-Nbnc8dK/0/bd6ae82c/XL/IMG_6931-XL.jpg"
-              alt="Other"
-            />
+            <img className="mobile-img" src={this.state.other} alt="Other" />
           </div>
         </Link>
         <div className="featured-container">

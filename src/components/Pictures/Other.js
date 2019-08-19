@@ -7,16 +7,20 @@ class Other extends React.Component {
     super();
     this.state = {
       pictures: [],
-      items: 0
+      items: 0,
+      offset: 0
     };
   }
 
   componentDidMount() {
     axios
-      .get("/album/other")
-      .then(res => {
-        this.setState({ pictures: res.data });
-        this.setState({ items: Math.ceil(this.state.pictures.length / 2) - 2 });
+      .all([axios.get("/album/other"), axios.get("/albums")])
+      .then(([res1, res2]) => {
+        this.setState({ pictures: res1.data });
+        this.setState({ offset: res2.data[5].offsets });
+        this.setState({
+          items: Math.ceil(this.state.pictures.length / 2) + this.state.offset
+        });
       })
       .catch(error => {
         console.log(error);

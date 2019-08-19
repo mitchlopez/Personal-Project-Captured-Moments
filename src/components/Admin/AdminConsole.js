@@ -3,13 +3,30 @@ import AddPictures from "./AdminConsole/AddPictures";
 import AlbumCovers from "./AdminConsole/AlbumCovers";
 import FeaturedPhotos from "./AdminConsole/FeaturedPhotos";
 import RemovePictures from "./AdminConsole/RemovePictures";
+import { PermissibleRender } from "@brainhubeu/react-permissible";
+import { connect } from "react-redux";
+import { updatePermissions } from "../../redux/reducer";
+import axios from "axios";
+// import { Redirect } from "react-router-dom";
 
 class AdminConsole extends React.Component {
   constructor() {
     super();
     this.state = {
-      content: "album"
+      content: "add",
+      userPermissions: ["regular"],
+      redirect: false
     };
+  }
+
+  componentDidMount() {
+    axios.get("/auth").then(res => {
+      // console.log(this.props);
+      if (res.data.isAdmin === true) {
+        this.props.updatePermissions(["admin"]);
+        this.setState({ userPermissions: this.props.userPermissions });
+      }
+    });
   }
 
   renderContent() {
@@ -25,6 +42,10 @@ class AdminConsole extends React.Component {
   }
 
   render() {
+    // if (this.state.userPermissions !== ["admin"]) {
+    //   return <Redirect to="/auth" />;
+    // }
+
     return (
       <div className="admin-container">
         <nav className="admin-nav">
@@ -53,11 +74,25 @@ class AdminConsole extends React.Component {
             Album Covers
           </ul>
         </nav>
-        {this.renderContent()}
+        <PermissibleRender
+          userPermissions={this.state.userPermissions}
+          requiredPermissions={["admin"]}
+        >
+          {this.renderContent()}
+        </PermissibleRender>
         <div className="admin-container" />
       </div>
     );
   }
 }
 
-export default AdminConsole;
+function mapStateToProps(reduxState) {
+  return {
+    userPermissions: reduxState.userPermissions
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  { updatePermissions }
+)(AdminConsole);

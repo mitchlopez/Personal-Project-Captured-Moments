@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
 import Filter from "bad-words";
+import { PermissibleRender } from "@brainhubeu/react-permissible";
+import { connect } from "react-redux";
+import { getPermissions, updatePermissions } from "../../redux/reducer";
 
 const filter = new Filter();
 class SinglePicture extends React.Component {
@@ -13,19 +16,23 @@ class SinglePicture extends React.Component {
       description: "",
       showPopup: "no-popup",
       newComment: "",
-      showDescription: "hide-description"
+      showDescription: "hide-description",
+      userPermissions: ["regular"]
     };
   }
   componentDidMount() {
     Promise.all([
       axios.get(`/photo/${this.props.match.params.id}`),
-      axios.get(`/photo/comments/${this.props.match.params.id}`)
-    ]).then(([result1, result2]) => {
+      axios.get(`/photo/comments/${this.props.match.params.id}`),
+      axios.get("/auth")
+    ]).then(([result1, result2, result3]) => {
       this.setState({ url: result1.data[0].url }); //sets state with image url
       this.setState({ description: result1.data[0].description }); //sets state with image description
-      // console.log(result2.data);
-      //   console.log(result2.data[0]);
-
+      this.setState({ userPermissions: this.props.userPermissions });
+      if (result3.data.isAdmin === true) {
+        this.props.updatePermissions(["admin"]);
+        this.setState({ userPermissions: this.props.userPermissions });
+      }
       if (result2.data[0] !== undefined) {
         this.setState({ comments: result2.data });
       }
@@ -55,7 +62,7 @@ class SinglePicture extends React.Component {
     const body = {
       comment: this.state.newComment
     };
-    if (this.state.newComment.length < 6) {
+    if (this.state.newComment.length < 3) {
       alert("Please insert a minimum 3 characters!");
     } else if (this.state.newComment.length > 500) {
       alert("500 character maximum");
@@ -121,12 +128,17 @@ class SinglePicture extends React.Component {
               <div className="description-text single-image-text">
                 {this.state.description}
               </div>
-              <button
-                className="edit-description-button"
-                onClick={this.toggleDecriptionEdit}
+              <PermissibleRender
+                userPermissions={this.state.userPermissions}
+                requiredPermissions={["admin"]}
               >
-                Edit
-              </button>
+                <button
+                  className="edit-description-button"
+                  onClick={this.toggleDecriptionEdit}
+                >
+                  Edit
+                </button>
+              </PermissibleRender>
             </div>
             <div className={this.state.showDescription}>
               <input
@@ -151,20 +163,25 @@ class SinglePicture extends React.Component {
                 <p className="single-image-text">
                   {filter.clean(comment.comment)}
                 </p>
-                <button
-                  onClick={() => {
-                    axios
-                      .delete(`/photo/comment/${comment.comment_id}`)
-                      .then(() => {
-                        this.refreshComments();
-                      })
-                      .catch(e => console.log(e));
-                    console.log(comment.comment_id);
-                  }}
-                  className="admin-delete-button"
+                <PermissibleRender
+                  userPermissions={this.state.userPermissions}
+                  requiredPermissions={["admin"]}
                 >
-                  Delete
-                </button>
+                  <button
+                    onClick={() => {
+                      axios
+                        .delete(`/photo/comment/${comment.comment_id}`)
+                        .then(() => {
+                          this.refreshComments();
+                        })
+                        .catch(e => console.log(e));
+                      console.log(comment.comment_id);
+                    }}
+                    className="admin-delete-button"
+                  >
+                    Delete
+                  </button>
+                </PermissibleRender>
               </div>
             );
           })}
@@ -202,4 +219,13 @@ class SinglePicture extends React.Component {
   }
 }
 
-export default SinglePicture;
+function mapStateToProps(reduxState) {
+  return {
+    userPermissions: reduxState.userPermissions
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  { getPermissions, updatePermissions }
+)(SinglePicture);

@@ -127,13 +127,14 @@ class FeaturedPhotos extends React.Component {
           Instructions: There are 3 input fields above with a number next to
           them. The input fields represent the links to the featured photos on
           the landing page. When you change a link, you will see the preview
-          picture below change. The numbers are the number it will put in the
-          url when you click on a number. If a number is selected, that does not
-          exist, the app will crash upon clicking that picture. If the picture
-          is not on the site already, then enter the number 0 and the link will
-          send users to an error message, instructing them how to view the image
-          larger. Nothing will save until the save button, above the preview
-          pictures, is pressed. ALL LINKS MUST END IN (.jpg), (.png), OR ANOTHER IMAGE FILE-TYPE.
+          picture above change. The numbers are the number it will put in the
+          url when you click on a picture. If a number is selected, that does
+          not exist, the app will crash upon clicking that picture. If the
+          picture is not on the site already, then enter the number 0 and the
+          link will send users to an error message, instructing them how to view
+          the image larger. Nothing will save until the save button, above the
+          preview pictures, is pressed. ALL LINKS MUST END IN (.jpg), (.png), OR
+          ANOTHER IMAGE FILE-TYPE.
         </p>
       </div>
     );

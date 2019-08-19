@@ -293,6 +293,7 @@ h3.single-image-text {
   flex-wrap: wrap;
   justify-content: space-around;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .admin-container {
@@ -353,7 +354,7 @@ h1.featured {
   margin-bottom: -20px;
 }
 
-@media (max-width: 730px) {
+@media (max-width: 830px) {
   .right-nav {
     display: none;
   }
@@ -450,7 +451,7 @@ h1.featured {
   }
 }
 
-@media (min-width: 730px) {
+@media (min-width: 830px) {
   .open {
     animation: closeMenu linear forwards 0.3s;
   }
@@ -679,4 +680,12 @@ h3.comment-header {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.preview-image {
+  max-width: 40vw;
+  max-height: 50vh;
+  height: auto;
+  width: auto;
+  margin-top: 40px;
 }

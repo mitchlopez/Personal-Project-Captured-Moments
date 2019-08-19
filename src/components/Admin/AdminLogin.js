@@ -1,13 +1,26 @@
 import React from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import { updatePermissions } from "../../redux/reducer";
+import { Redirect } from "react-router-dom";
 
 class AdminLogin extends React.Component {
   constructor() {
     super();
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      redirect: false
     };
+  }
+
+  componentDidMount() {
+    axios.get("/auth").then(res => {
+      if (res.data.isAdmin === true) {
+        this.props.updatePermissions(["admin"]);
+        this.setState({ redirect: true });
+      }
+    });
   }
 
   handleUsername = e => {
@@ -26,11 +39,23 @@ class AdminLogin extends React.Component {
 
     axios
       .post("/auth", body)
-      .then()
+      .then(res => {
+        if (res.data.isAdmin) {
+          this.props.updatePermissions(["admin"]);
+          this.setState({ redirect: true });
+        } else {
+          alert(
+            "Sorry,That Information Does Not Match, Please Check Username and Password and Try Again"
+          );
+        }
+      })
       .catch(e => console.log(e));
   };
 
   render() {
+    if (this.state.redirect === true) {
+      return <Redirect to="/admin" />;
+    }
     return (
       <div className="login-container">
         <p className="login-text warning">
@@ -64,4 +89,13 @@ class AdminLogin extends React.Component {
   }
 }
 
-export default AdminLogin;
+function mapStateToProps(reduxState) {
+  return {
+    userPermissions: reduxState.userPermissions
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  { updatePermissions }
+)(AdminLogin);

@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 class AddPictures extends React.Component {
   constructor() {
     super();
@@ -21,11 +21,18 @@ class AddPictures extends React.Component {
     if (this.state.id > 0 && this.state.id < 7 && this.state.link.length > 10) {
       axios
         .post("/photo", body)
-        .then(alert("photo-added successfuly"))
+        .then(alert("photo added successfuly"))
         .catch(e => console.log(e));
     } else {
       alert("Please Read the Instructions and Try Again");
     }
+  };
+
+  logout = () => {
+    axios
+      .post("/auth/signout")
+      .then(alert("Signed Out Successfully"))
+      .catch(e => console.log(e));
   };
 
   render() {
@@ -52,8 +59,20 @@ class AddPictures extends React.Component {
           />
         </div>
         <button onClick={this.handleSave} className="login-button">
-          Save
+          Add
         </button>
+
+        <Link to="/">
+          <button className="login-button" onClick={this.logout}>
+            Sign Out
+          </button>
+        </Link>
+
+        <img
+          src={this.state.link}
+          className="preview-image"
+          alt="When you enter a link, it will preview here"
+        />
         <p className="login-text">
           Instructions: On this tab there are three inputs. One for a link,
           another for the photo description (optional), and one last with a

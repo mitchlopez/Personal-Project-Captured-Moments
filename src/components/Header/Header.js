@@ -72,6 +72,9 @@ class Header extends React.Component {
               <Link to="/album/Other">
                 <p className="nav-item">Other</p>
               </Link>
+              <Link to="/auth">
+                <p className="nav-item">Admin</p>
+              </Link>
             </div>
           </div>
         </header>

@@ -135,6 +135,32 @@ function deletePicture(req, res) {
     });
 }
 
+function checkLogin(req, res) {
+  const dbInstance = req.app.get("db");
+  const { username, password } = req.body;
+
+  dbInstance
+    .checkLogin([username, password])
+    .then(result => {
+      if (result[0].count > 0) {
+        req.session.user = {
+          isAdmin: true
+        };
+      }
+      res.status(200).json(req.session.user);
+    })
+    .catch(e => {
+      res.status(500).json("oops, something went wrong");
+      console.log(e);
+    });
+}
+
+function logout(req, res) {
+  // console.log("hit");
+  req.session.destroy();
+  res.status(200).json(res.session);
+}
+
 module.exports = {
   getPhotoInfoByPhotoId,
   getCommentsByPhotoId,
@@ -144,5 +170,7 @@ module.exports = {
   getFeatured,
   updateFeatured,
   addPicture,
-  deletePicture
+  deletePicture,
+  checkLogin,
+  logout
 };

@@ -35,6 +35,11 @@ export default function(props) {
           Other
         </div>
       </Link>
+      <Link to="/auth">
+        <div className={props.state.menu} onClick={props.click}>
+          Admin
+        </div>
+      </Link>
     </div>
   );
 }

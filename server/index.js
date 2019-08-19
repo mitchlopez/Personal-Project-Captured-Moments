@@ -2,11 +2,28 @@ const express = require("express");
 const massive = require("massive");
 const albumController = require("./albumController/albumController");
 const pictureController = require("./pictureController/pictureController");
+const session = require("express-session");
 require("dotenv").config();
 
 const app = express();
 
+const path = require("path"); // Usually moved to the start of file
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
+});
+
 app.use(express.json());
+app.use(
+  session({
+    resave: false,
+    saveUninitialized: true,
+    secret: process.env.SESSION_SECRET,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 //one day
+    }
+  })
+);
 
 massive(process.env.CONNECTION_STRING).then(dbInstance => {
   app.set("db", dbInstance);
@@ -24,6 +41,18 @@ app.put("/albums", albumController.updateAlbums);
 
 app.get("/featured", pictureController.getFeatured);
 app.put("/featured", pictureController.updateFeatured);
+app.post("/auth", pictureController.checkLogin);
+app.get("/auth", (req, res) => {
+  // console.log("hit");
+  if (req.session.user) {
+    res.status(200).json(req.session.user);
+  } else {
+    res.status(200).json({
+      isAdmin: false
+    });
+  }
+});
+app.post("/auth/signout", pictureController.logout);
 
 app.get("/photo/comments/:id", pictureController.getCommentsByPhotoId);
 app.get("/photo/:id", pictureController.getPhotoInfoByPhotoId);

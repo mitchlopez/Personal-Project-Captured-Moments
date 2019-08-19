@@ -24,7 +24,7 @@ class AlbumCovers extends React.Component {
     axios
       .get("/albums")
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         this.setState({ landscape: res.data[0].url });
         this.setState({ sunset: res.data[1].url });
         this.setState({ moon: res.data[2].url });
@@ -61,7 +61,7 @@ class AlbumCovers extends React.Component {
 
     axios
       .put("/albums", body)
-      .then(console.log("done"))
+      .then(alert("Saved successfully"))
       .catch(e => {
         console.log(e);
       });
