@@ -31,7 +31,10 @@ class AddPictures extends React.Component {
   logout = () => {
     axios
       .post("/auth/signout")
-      .then(alert("Signed Out Successfully"))
+      .then(() => {
+        window.location.reload();
+        alert("Signed Out Successfully");
+      })
       .catch(e => console.log(e));
   };
 
