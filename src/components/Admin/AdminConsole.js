@@ -42,10 +42,6 @@ class AdminConsole extends React.Component {
   }
 
   render() {
-    // if (this.state.userPermissions !== ["admin"]) {
-    //   return <Redirect to="/auth" />;
-    // }
-
     return (
       <div className="admin-container">
         <nav className="admin-nav">

@@ -4,6 +4,7 @@ const albumController = require("./albumController/albumController");
 const pictureController = require("./pictureController/pictureController");
 const session = require("express-session");
 const path = require("path");
+const nodeMailerController = require("./nodeMailerController/nodeMailer");
 require("dotenv").config();
 
 const app = express();
@@ -58,6 +59,7 @@ app.delete("/photo/comment/:id", pictureController.deleteCommentByCommentId);
 app.put("/photo/description/:id", pictureController.updateDescriptionByPhotoId);
 app.post("/photo", pictureController.addPicture);
 app.delete("/photo/:id", pictureController.deletePicture);
+app.post("/photo/contact", nodeMailerController.sendEmail);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../build/index.html"));

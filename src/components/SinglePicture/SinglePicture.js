@@ -4,6 +4,7 @@ import Filter from "bad-words";
 import { PermissibleRender } from "@brainhubeu/react-permissible";
 import { connect } from "react-redux";
 import { getPermissions, updatePermissions } from "../../redux/reducer";
+import Contact from "./Contact/Contact";
 
 const filter = new Filter();
 class SinglePicture extends React.Component {
@@ -17,7 +18,8 @@ class SinglePicture extends React.Component {
       showPopup: "no-popup",
       newComment: "",
       showDescription: "hide-description",
-      userPermissions: ["regular"]
+      userPermissions: ["regular"],
+      contact: "hide"
     };
   }
   componentDidMount() {
@@ -54,6 +56,18 @@ class SinglePicture extends React.Component {
     } else {
       this.setState({
         showPopup: "popup"
+      });
+    }
+  };
+
+  toggleContact = () => {
+    if (this.state.contact === "contact") {
+      this.setState({
+        contact: "hide"
+      });
+    } else {
+      this.setState({
+        contact: "contact"
       });
     }
   };
@@ -102,6 +116,11 @@ class SinglePicture extends React.Component {
     this.setState({
       newComment: event.target.value
     });
+  };
+
+  handleSent = () => {
+    alert("Message Sent");
+    window.location.reload();
   };
 
   render() {
@@ -186,11 +205,15 @@ class SinglePicture extends React.Component {
             );
           })}
         </div>
-        <div>
+        <div className="picture-bottom">
           {/*Popup for comment*/}
           <button className="add-comment-button" onClick={this.togglePopup}>
             {" "}
             Click To Add Comment
+          </button>
+          <button className="add-comment-button" onClick={this.toggleContact}>
+            {" "}
+            Contact the Photographer
           </button>
 
           <div className={this.state.showPopup}>
@@ -212,6 +235,13 @@ class SinglePicture extends React.Component {
                 </button>
               </div>
             </div>
+          </div>
+          <div className={this.state.contact}>
+            <Contact
+              display={this.state.contact}
+              picture={this.props.match.params.id}
+              sent={this.handleSent}
+            />
           </div>
         </div>
       </div>

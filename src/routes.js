@@ -10,6 +10,7 @@ import Travel from "./components/Pictures/Travel";
 import SinglePicture from "./components/SinglePicture/SinglePicture";
 import AdminLogin from "./components/Admin/AdminLogin";
 import AdminConsole from "./components/Admin/AdminConsole";
+import Bio from "./components/Album/Bio/Bio";
 
 export default (
   <Switch>
@@ -34,6 +35,14 @@ export default (
     <Route path="/photo/:id" component={SinglePicture} />
     <Route path="/auth" component={AdminLogin} />
     <Route path="/admin" component={AdminConsole} />
+    <Route path="/bio" component={Bio} />
+    <Route
+      path="/instagram"
+      component={() => {
+        window.location.href = "https://instagram.com/smlopez05";
+        return null;
+      }}
+    />
 
     {/* keep at bottom incase of inpropper path  */}
     <Route

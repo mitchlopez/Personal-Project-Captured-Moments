@@ -142,6 +142,10 @@ class Album extends React.Component {
               />
             </Link>
           </section>
+
+          <Link to="/bio">
+            <div className="mobile-label bio-link">About Me</div>
+          </Link>
         </div>
       </div>
     );
