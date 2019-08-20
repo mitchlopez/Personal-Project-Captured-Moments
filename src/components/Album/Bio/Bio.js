@@ -6,13 +6,12 @@ export default function Bio() {
     <div className="bio-container">
       <h2 className="bio">About Me:</h2>
       <p className="left-text bio">
-        I am a native Arizonan who thinks I have finally found the the family's
+        I am a native Arizonan who thinks I have finally found the family's
         artistic gene. Born and raised in southern Arizona, I enjoy exploring
         the desert and capturing not only the landscape, but also its creatures,
-        its unique plants and cacti, and the various moods of the desert
-        depending on time of year, lighting, and season. I also have an
-        appreciation for the moon, a great sunset, travel, and capturing life’s
-        moments as I see them.
+        it’s unique plants and cacti, and the various moods of the desert. I
+        also have an appreciation for the moon, a great sunset, travel, and
+        capturing life’s moments as I see them.
       </p>
       <h3 className="bio">Thank you for visiting my site - Shane</h3>
       <div className="bio-image-container">
