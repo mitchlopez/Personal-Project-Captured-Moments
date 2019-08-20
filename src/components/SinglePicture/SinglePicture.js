@@ -49,7 +49,7 @@ class SinglePicture extends React.Component {
     if (this.state.showPopup === "popup") {
       this.setState({
         showPopup: "no-popup",
-        newComment: "this is"
+        newComment: ""
       });
     } else {
       this.setState({
