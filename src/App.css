@@ -159,6 +159,12 @@ a:active {
   margin-top: 2vh;
 }
 
+.featured {
+  border-bottom: 1px solid #94a3a8;
+  border-top: 1px solid #94a3a8;
+  font-size: 1.7em;
+}
+
 .images-container {
   display: flex;
   flex-direction: row;
