@@ -19,14 +19,17 @@ export default function Bio() {
         <img
           className="bio-pic"
           src="https://photos.smugmug.com/photos/i-rLcpNrh/0/X2/i-rLcpNrh-X2.jpg"
+          alt="first-bio-pic"
         />
         <img
           className="bio-pic"
           src="https://photos.smugmug.com/photos/i-mvnrDtw/0/X2/i-mvnrDtw-X2.jpg"
+          alt="second-bio-pic"
         />
         <img
           className="bio-pic"
           src="https://photos.smugmug.com/photos/i-NcW74sG/0/X2/i-NcW74sG-X2.jpg"
+          alt="third-bio-pic"
         />
       </div>
       <Link to="/instagram">
