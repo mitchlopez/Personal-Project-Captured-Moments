@@ -118,7 +118,7 @@ class Album extends React.Component {
           </div>
         </Link>
         <div className="featured-container">
-          <h1 className="featured">Featured</h1>
+          <h1 className="featured">Featuredrs</h1>
           <section className="featured-preview-container">
             <Link to={`/photo/${this.state.first_id}`}>
               <img
