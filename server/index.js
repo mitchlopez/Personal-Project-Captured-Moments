@@ -28,12 +28,7 @@ massive(process.env.CONNECTION_STRING).then(dbInstance => {
   console.log("Database Connected :)");
 });
 
-app.get("/album/landscape", albumController.getLandscapeAlbum);
-app.get("/album/moon", albumController.getMoonAlbum);
-app.get("/album/sunset", albumController.getSunsetAlbum);
-app.get("/album/travel", albumController.getTravelAlbum);
-app.get("/album/wildlife", albumController.getWildlifeAlbum);
-app.get("/album/other", albumController.getOtherAlbum);
+app.get("/album/:album", albumController.getAlbumByAlbumName);
 app.get("/albums", albumController.getAlbums);
 app.put("/albums", albumController.updateAlbums);
 

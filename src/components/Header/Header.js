@@ -69,7 +69,7 @@ class Header extends React.Component {
               <Link to="/album/wildlife">
                 <p className="nav-item">Wildlife</p>
               </Link>
-              <Link to="/album/Other">
+              <Link to="/album/other">
                 <p className="nav-item">Other</p>
               </Link>
               <Link to="/auth">

@@ -30,7 +30,7 @@ export default function(props) {
           Wildlife
         </div>
       </Link>
-      <Link to="/album/Other">
+      <Link to="/album/other">
         <div className={props.state.menu} onClick={props.click}>
           Other
         </div>
