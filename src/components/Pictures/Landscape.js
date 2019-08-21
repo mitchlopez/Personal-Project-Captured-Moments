@@ -52,7 +52,6 @@ class Landscape extends React.Component {
               alt={picture.description}
               onClick={() => {
                 this.setState({ photo_id: picture.photo_id });
-                console.log(this.state.photo_id);
               }}
             />
           </Link>

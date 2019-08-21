@@ -28,7 +28,6 @@ class Moon extends React.Component {
   }
 
   render() {
-    console.log(this.state.offset);
     if (this.state.pictures[0] === undefined) {
       return (
         <div>
